@@ -50,7 +50,6 @@ F:\NetflixAppClone\NetflixDemo\bin\Debug\Icons\NetFlixLG.png
 F:\NetflixAppClone\NetflixDemo\bin\Debug\NetflixDemo.exe.config
 F:\NetflixAppClone\NetflixDemo\bin\Debug\NetflixDemo.exe
 F:\NetflixAppClone\NetflixDemo\bin\Debug\NetflixDemo.pdb
-F:\NetflixAppClone\NetflixDemo\obj\Debug\NetflixDemo.csprojAssemblyReference.cache
 F:\NetflixAppClone\NetflixDemo\obj\Debug\Themes\AutoScrollListBoxDictionary.baml
 F:\NetflixAppClone\NetflixDemo\obj\Debug\Themes\MovieCard.baml
 F:\NetflixAppClone\NetflixDemo\obj\Debug\Themes\StylishScrollbar.baml
