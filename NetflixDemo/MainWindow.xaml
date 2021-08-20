@@ -1,0 +1,184 @@
+﻿<Window x:Class="NetflixDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NetflixDemo"
+        xmlns:viewmodel="clr-namespace:NetflixDemo.MVVM.ViewModel"
+        mc:Ignorable="d"
+        Background="Black"
+        WindowStartupLocation="CenterScreen"
+        Height="700" Width="1200"
+        WindowStyle="None"
+        WindowState="Maximized"
+        AllowsTransparency="True"
+        ResizeMode="CanResizeWithGrip">
+    <Window.DataContext>
+        <viewmodel:MainViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Background="Transparent" MouseDown="BorderDrag_MouseDown">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="400"/>
+                </Grid.ColumnDefinitions>
+                <Image 
+                       RenderOptions.BitmapScalingMode="Fant"
+                       Source="./Icons/NetFlixLG.png"/>
+                <StackPanel Grid.Column="1" HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button Height="50"
+                        Content="Discovery"
+                        Style="{StaticResource ButtonText}"
+                        Margin="0,0,20,0"/>
+                    <Button Height="50"
+                        Content="TV Series"
+                        Style="{StaticResource ButtonText}"
+                        Margin="0,0,20,0"/>
+                    <Button Height="50"
+                        Content="Films"
+                        Style="{StaticResource ButtonText}"
+                        Margin="0,0,20,0"/>
+                    <Button Height="50"
+                        Content="Original Programs"
+                        Style="{StaticResource ButtonText}"
+                        Margin="0,0,20,0"/>
+                    <Button Height="50"
+                        Content="My List"
+                        Style="{StaticResource ButtonText}"
+                        Margin="0,0,20,0"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Button
+                        Content="_"
+                        FontSize="25"
+                        Style="{StaticResource ButtonState}"
+                        Click="Minimize_ButtonClick"/>
+                    <Button 
+                        Content="□"
+                        FontSize="25"
+                        Style="{StaticResource ButtonState}"
+                        Click="WindowState_ButtonClick"/>
+                    <Button
+                        Content="╳"
+                        Style="{StaticResource ButtonState}"
+                        Click="Close_ButtonClick"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Hidden"
+                      Height="Auto">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="550"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="500"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="{Binding SelectedMovie.ImageSource}"
+                                RenderOptions.BitmapScalingMode="Fant"/>
+                    </Grid.Background>
+                    <Grid HorizontalAlignment="Center"
+                      VerticalAlignment="Bottom" 
+                      Width="400" Margin="0,0,0,50"
+                      Height="300">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock Text="NETFLIX"
+                               Foreground="LightGray"
+                               FontWeight="Bold" Margin="0,0,10,0"/>
+                            <TextBlock Text="ORIGINAL"
+                               Foreground="LightGray"/>
+                        </StackPanel>
+                        <TextBlock Grid.Row="1"
+                           Text="{Binding SelectedMovie.Name}"
+                           FontWeight="Bold"
+                           FontSize="25"
+                           Margin="0,5"
+                           Foreground="White"/>
+                        <TextBlock Grid.Row="2"
+                           Foreground="LightGray"
+                           FontSize="15"
+                           Margin="0,5"
+                           TextWrapping="Wrap"
+                           Text="{Binding SelectedMovie.Description}"/>
+                        <StackPanel Grid.Row="3" Orientation="Horizontal"
+                                HorizontalAlignment="Left">
+                            <Button Content="Play"
+                                Style="{StaticResource ButtonPlay}"/>
+                            <Button Content="My list"
+                                Margin="20,0,0,0"
+                                Style="{StaticResource ButtonImage}"/>
+                        </StackPanel>
+
+                    </Grid>
+                </Grid>
+                <!--<ListView ItemsSource="{Binding CategoryMovie}"
+                          Background="Transparent"
+                          BorderThickness="0"
+                          Grid.Row="1"
+                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          ItemContainerStyle="{StaticResource MovieCategory}">
+                </ListView>-->
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Trending"
+                       FontWeight="Bold"
+                       Foreground="Gray"
+                           FontSize="20"
+                       Margin="8,0,0,0"
+                       VerticalAlignment="Center"/>
+                    <ListBox Grid.Row="1" x:Name="horizontalListBox" 
+                        ItemsSource="{Binding Movies}"
+                        SelectedItem="{Binding SelectedMovie}"
+                        SelectionMode="Extended"
+                        ItemContainerStyle="{StaticResource MovieCategory}"
+                        Style="{ StaticResource ListBoxWithAutoScroll_Horizontal }"
+                        >
+                    </ListBox>
+
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="All Movies"
+                       FontWeight="Bold"
+                       Foreground="Gray"
+                           FontSize="20"
+                       Margin="8,0,0,0"
+                       VerticalAlignment="Center"/>
+                    <ListBox Grid.Row="1" 
+                        ItemsSource="{Binding Movies}"
+                        SelectedItem="{Binding SelectedMovie}"
+                        SelectionMode="Extended"
+                        ItemContainerStyle="{StaticResource MovieCategory}"
+                        Style="{ StaticResource ListBoxWithAutoScroll_Horizontal }">
+                    </ListBox>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Window>
