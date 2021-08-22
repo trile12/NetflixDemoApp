@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace NetflixDemo.MVVM.ViewModel
 {
@@ -21,7 +22,7 @@ namespace NetflixDemo.MVVM.ViewModel
             get { return _selectedMovie; }
             set
             {
-                if(value!=null)
+                if (value != null)
                 {
                     _selectedMovie = value;
                 }
@@ -29,14 +30,29 @@ namespace NetflixDemo.MVVM.ViewModel
             }
         }
 
+        private Visibility _IsVisibleMainView;
+
+        public Visibility IsVisibleMainView
+        {
+            get { return _IsVisibleMainView; }
+            set
+            {
+                _IsVisibleMainView = value;
+                OnPropertyChanged();
+            }
+        }
+
+
 
         public RelayCommand SelectCommand { get; set; }
+        public RelayCommand ClickPlayButton { get; set; }
 
         public MainViewModel()
         {
             Movies = new ObservableCollection<MovieModel>();
             CategoryMovie = new ObservableCollection<CategoryModel>();
             CreateDataTest();
+            ClickPlayButton = new RelayCommand(Play);
         }
 
         public void CreateDataTest()
@@ -224,6 +240,11 @@ namespace NetflixDemo.MVVM.ViewModel
 
 
             SelectedMovie = Movies[3];
+        }
+
+        public void Play(object sender)
+        {
+            IsVisibleMainView = Visibility.Collapsed;
         }
     }
 }

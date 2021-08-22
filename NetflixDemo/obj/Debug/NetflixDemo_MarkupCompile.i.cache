@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-F:\NetFlixApp\NetflixDemo\NetflixDemo\obj\Debug\
+F:\NetflixAppClone\NetflixDemo\obj\Debug\
 NetflixDemo
 none
 false
 DEBUG;TRACE
-F:\NetFlixApp\NetflixDemo\NetflixDemo\App.xaml
+F:\NetflixAppClone\NetflixDemo\App.xaml
 6-1640591805
-13-318487124
+14178844821
 141857983608
-131569487696
+123710134127
 MainWindow.xaml;Themes\AutoScrollListBoxDictionary.xaml;Themes\MovieCard.xaml;Themes\MovieCategory.xaml;Themes\StyleButton.xaml;Themes\StylishScrollbar.xaml;
 
-False
+True
 

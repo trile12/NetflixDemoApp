@@ -23,6 +23,11 @@ namespace NetflixDemo.Core
             this.canExecute = canExecute;
         }
 
+        public RelayCommand(Action<object> execute)
+        {
+            this.execute = execute;
+        }
+
         public bool CanExecute(object parameter)
         {
             return this.canExecute == null || this.canExecute(parameter);

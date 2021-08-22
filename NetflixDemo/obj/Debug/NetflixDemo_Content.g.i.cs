@@ -21,5 +21,6 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("icons/b8.jpg")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("icons/b9.jpg")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("icons/netflixlg.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("videos/moneyheist.mp4")]
 
 
