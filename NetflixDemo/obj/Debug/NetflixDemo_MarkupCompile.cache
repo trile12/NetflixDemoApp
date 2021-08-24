@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 F:\NetflixAppClone\NetflixDemo\App.xaml
-6-1640591805
+81892190731
 14178844821
-101604478190
-123-934143177
-MainWindow.xaml;Themes\AutoScrollListBoxDictionary.xaml;Themes\MovieCard.xaml;Themes\MovieCategory.xaml;Themes\StyleButton.xaml;Themes\StylishScrollbar.xaml;
+13-1480779731
+1291389860199
+MainWindow.xaml;MVVM\View\HomeView.xaml;MVVM\View\MediaVideoView.xaml;Themes\AutoScrollListBoxDictionary.xaml;Themes\MovieCard.xaml;Themes\MovieCategory.xaml;Themes\StyleButton.xaml;Themes\StylishScrollbar.xaml;
 
 False
 

@@ -1,250 +1,35 @@
 ﻿using NetflixDemo.Core;
-using NetflixDemo.MVVM.Model;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NetflixDemo.MVVM.View;
+using Prism.Commands;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace NetflixDemo.MVVM.ViewModel
 {
     public class MainViewModel : ObservableObject
     {
-        public ObservableCollection<MovieModel> Movies { get; set; }
-        public ObservableCollection<CategoryModel> CategoryMovie { get; set; }
+        private UserControl _LoadedControl;
 
-        private MovieModel _selectedMovie;
-
-        public MovieModel SelectedMovie
+        public UserControl LoadedControl
         {
-            get { return _selectedMovie; }
+            get { return _LoadedControl; }
             set
             {
-                if (value != null)
-                {
-                    _selectedMovie = value;
-                }
+                _LoadedControl = value;
                 OnPropertyChanged();
             }
         }
 
-        private Visibility _IsVisibleMainView;
-
-        public Visibility IsVisibleMainView
-        {
-            get { return _IsVisibleMainView; }
-            set
-            {
-                _IsVisibleMainView = value;
-                OnPropertyChanged();
-            }
-        }
-
-
-
-        public RelayCommand SelectCommand { get; set; }
-        public RelayCommand ClickPlayButton { get; set; }
-
+        public DelegateCommand<Window> LoadedCommand { get; set; }
         public MainViewModel()
         {
-            Movies = new ObservableCollection<MovieModel>();
-            CategoryMovie = new ObservableCollection<CategoryModel>();
-            CreateDataTest();
-            ClickPlayButton = new RelayCommand(Play);
+            LoadedCommand = new DelegateCommand<Window>(Loaded);
         }
 
-        public void CreateDataTest()
+        public void Loaded(Window sender)
         {
-            //CategoryMovie.Add(new CategoryModel
-            //{
-            //    Id = 1,
-            //    Name = "Action & Adventure",
-            //    lstMovie = new ObservableCollection<MovieModel>()
-            //    {
-            //        new MovieModel
-            //        {
-            //             Name = "Super Man",
-            //             Description = "Mô tả",
-            //             ImageSource = "./Icons/B1.jpg"
-            //        },
-            //        new MovieModel
-            //        {
-            //             Name = "Super Man",
-            //             Description = "Mô tả",
-            //             ImageSource = "./Icons/B2.jpg"
-            //        },
-            //                       new MovieModel
-            //        {
-            //             Name = "Super Man",
-            //             Description = "Mô tả",
-            //             ImageSource = "./Icons/B3.jpg"
-            //        },
-            //        new MovieModel
-            //        {
-            //             Name = "Stranger Thing",
-            //             Description = "When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supermatural forces and one strange little girl.",
-            //             ImageSource = "./Icons/BG2.jpg"
-            //        },
-            //                       new MovieModel
-            //        {
-            //             Name = "Super Man",
-            //             Description = "Mô tả",
-            //             ImageSource = "./Icons/B5.jpg"
-            //        },
-            //        new MovieModel
-            //        {
-            //             Name = "Super Man",
-            //             Description = "Mô tả",
-            //             ImageSource = "./Icons/B6.jpg"
-            //        },
-            //                       new MovieModel
-            //        {
-            //             Name = "Super Man",
-            //             Description = "Mô tả",
-            //             ImageSource = "./Icons/B7.jpg"
-            //        }
-            //    }
-            //});
-            //CategoryMovie.Add(new CategoryModel
-            //{
-            //    Id = 1,
-            //    Name = "Science Fiction",
-            //    lstMovie = new ObservableCollection<MovieModel>()
-            //    {
-            //        new MovieModel
-            //        {
-            //             Name = "Super Man",
-            //             Description = "Mô tả",
-            //             ImageSource = "./Icons/B10.jpg"
-            //        },
-            //        new MovieModel
-            //        {
-            //             Name = "Super Man",
-            //             Description = "Mô tả",
-            //             ImageSource = "./Icons/B9.jpg"
-            //        },
-            //                       new MovieModel
-            //        {
-            //             Name = "Super Man",
-            //             Description = "Mô tả",
-            //             ImageSource = "./Icons/B6.jpg"
-            //        },
-            //        new MovieModel
-            //        {
-            //             Name = "Super Man",
-            //             Description = "Mô tả",
-            //             ImageSource = "./Icons/B3.jpg"
-            //        },
-            //                       new MovieModel
-            //        {
-            //             Name = "Super Man",
-            //             Description = "Mô tả",
-            //             ImageSource = "./Icons/B1.jpg"
-            //        },
-            //        new MovieModel
-            //        {
-            //             Name = "Super Man",
-            //             Description = "Mô tả",
-            //             ImageSource = "./Icons/B7.jpg"
-            //        },
-            //                       new MovieModel
-            //        {
-            //             Name = "Super Man",
-            //             Description = "Mô tả",
-            //             ImageSource = "./Icons/B8.jpg"
-            //        }     
-            //    }
-            //});
-
-            Movies.Add(new MovieModel
-            {
-                Name = "Super Man",
-                Description = "Mô tả",
-                ImageSource = "./Icons/B1.jpg"
-            });
-            Movies.Add(new MovieModel
-            {
-                Name = "Super Man",
-                Description = "Mô tả",
-                ImageSource = "./Icons/B2.jpg"
-            });
-            Movies.Add(new MovieModel
-            {
-                Name = "Super Man",
-                Description = "Mô tả",
-                ImageSource = "./Icons/B3.jpg"
-            });
-            Movies.Add(new MovieModel
-            {
-
-                Name = "Stranger Thing",
-                Description = "When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supermatural forces and one strange little girl.",
-                ImageSource = "./Icons/BG2.jpg"
-            });
-            Movies.Add(new MovieModel
-            {
-                Name = "Super Man",
-                Description = "Mô tả",
-                ImageSource = "./Icons/B5.jpg"
-            });
-            Movies.Add(new MovieModel
-            {
-                Name = "Super Man",
-                Description = "Mô tả",
-                ImageSource = "./Icons/B6.jpg"
-            });
-            Movies.Add(new MovieModel
-            {
-                Name = "Super Man",
-                Description = "Mô tả",
-                ImageSource = "./Icons/B7.jpg"
-            });
-            Movies.Add(new MovieModel
-            {
-                Name = "Super Man",
-                Description = "Mô tả",
-                ImageSource = "./Icons/B8.jpg"
-            });
-            Movies.Add(new MovieModel
-            {
-                Name = "Super Man",
-                Description = "Mô tả",
-                ImageSource = "./Icons/B9.jpg"
-            });
-            Movies.Add(new MovieModel
-            {
-                Name = "Super Man",
-                Description = "Mô tả",
-                ImageSource = "./Icons/B1.jpg"
-            });
-            Movies.Add(new MovieModel
-            {
-                Name = "Super Man",
-                Description = "Mô tả",
-                ImageSource = "./Icons/B2.jpg"
-            });
-            Movies.Add(new MovieModel
-            {
-                Name = "Super Man",
-                Description = "Mô tả",
-                ImageSource = "./Icons/B3.jpg"
-            });
-            Movies.Add(new MovieModel
-            {
-                Name = "Super Man",
-                Description = "Mô tả",
-                ImageSource = "./Icons/B5.jpg"
-            });
-
-
-            SelectedMovie = Movies[3];
-        }
-
-        public void Play(object sender)
-        {
-            IsVisibleMainView = Visibility.Collapsed;
+            LoadedControl = new HomeView();
         }
     }
 }

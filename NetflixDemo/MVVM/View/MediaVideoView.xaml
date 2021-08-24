@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="NetflixDemo.MVVM.View.MediaVideoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NetflixDemo"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             mc:Ignorable="d" 
+             Height="1080" Width="1920"
+             d:DesignHeight="1080" d:DesignWidth="1920">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Hidden">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <MediaElement RenderOptions.BitmapScalingMode="HighQuality"
+                                  Source="./Videos/MoneyHeist.mp4" 
+                                  Stretch="UniformToFill"
+                                  LoadedBehavior="Manual" Height="1000"
+                                  Name="mePlayer" />
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Slider Margin="5,0"
+                            VerticalAlignment="Top"
+                            Maximum="1" TickFrequency="0.1"
+                            Value="{Binding sliderVideoValue}" IsMoveToPointEnabled="True"/>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Style="{StaticResource MaterialDesignIconButton}"
+                                        Margin="15,0" Width="50" Height="50"
+                                        HorizontalAlignment="Left" HorizontalContentAlignment="Center">
+                                <materialDesign:PackIcon Kind="Play" Width="Auto" Height="Auto" />
+                            </Button>
+                            <!--Pause-->
+                            <Button Style="{StaticResource MaterialDesignIconButton}"
+                                        Margin="15,0" Width="50" Height="50"
+                                        HorizontalAlignment="Left" HorizontalContentAlignment="Center">
+                                <materialDesign:PackIcon Kind="VolumeMedium" Width="Auto" Height="Auto" />
+                            </Button>
+                            <!--VolumeHigh
+                                VolumeMute-->
+                            <Slider Minimum="0" Maximum="50" Value="35" VerticalAlignment="Center" Width="100" />
+                            <Label Content="0:50 / 4:25" VerticalAlignment="Center"
+                                           Foreground="White" FontSize ="15" />
+                        </StackPanel>
+                        <Button Grid.Column="1" HorizontalAlignment="Right"
+                                    Style="{StaticResource MaterialDesignIconButton}"
+                                    Margin="15,0" Width="25" Height="25">
+                            <materialDesign:PackIcon Kind="ArrowExpand" Width="Auto" Height="Auto" />
+                            <!--ArrowCollapse-->
+                        </Button>
+                    </Grid>
+
+                </Grid>
+
+            </Grid>
+
+
+        </ScrollViewer>
+    </Grid>
+</UserControl>
