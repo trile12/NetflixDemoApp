@@ -50,7 +50,7 @@
                            FontWeight="Bold"
                            FontSize="25"
                            Margin="0,5"
-                           Foreground="White"/>
+                           Foreground="#F2F2F2"/>
                         <TextBlock Grid.Row="2"
                            Foreground="LightGray"
                            FontSize="15"
@@ -74,8 +74,6 @@
                           Background="Transparent"
                           BorderThickness="0"
                           Grid.Row="1"
-                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                           ItemContainerStyle="{StaticResource MovieCategory}">
                 </ListView>
 

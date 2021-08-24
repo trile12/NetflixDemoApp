@@ -10,67 +10,83 @@
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              mc:Ignorable="d" 
-             Height="1080" Width="1920"
+             
              d:DesignHeight="1080" d:DesignWidth="1920">
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Hidden">
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="100"/>
                 </Grid.RowDefinitions>
                 <Grid>
-                    <MediaElement RenderOptions.BitmapScalingMode="HighQuality"
-                                  Source="./Videos/MoneyHeist.mp4" 
-                                  Stretch="UniformToFill"
-                                  LoadedBehavior="Manual" Height="1000"
-                                  Name="mePlayer" />
-                </Grid>
-                <Grid Grid.Row="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Slider Margin="5,0"
+                    <Grid>
+                        <MediaElement x:Name="mediacontrol" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top"
+                                  Source="./Videos/MoneyHeist.mp4"
+                                  MediaOpened="mediacontrol_MediaOpened"
+                                  MouseDown="MediaElement_MouseDown"
+                                  Volume="{Binding Value,ElementName=slidervol}"
+                                  Stretch="Uniform" Height="800"
+                                  LoadedBehavior="Manual"
+                                   />
+                    </Grid>
+                    <Grid Grid.Row="1" VerticalAlignment="Bottom" Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Slider x:Name="sliderVideo" Margin="5,0" Foreground="#F2F2F2"
+                            Thumb.DragCompleted="DragComplete"
+                            MouseLeftButtonUp="SliderVideo_MouseLeftButtonUp"
                             VerticalAlignment="Top"
                             Maximum="1" TickFrequency="0.1"
-                            Value="{Binding sliderVideoValue}" IsMoveToPointEnabled="True"/>
-                    <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Orientation="Horizontal">
-                            <Button Style="{StaticResource MaterialDesignIconButton}"
-                                        Margin="15,0" Width="50" Height="50"
-                                        HorizontalAlignment="Left" HorizontalContentAlignment="Center">
-                                <materialDesign:PackIcon Kind="Play" Width="Auto" Height="Auto" />
-                            </Button>
-                            <!--Pause-->
-                            <Button Style="{StaticResource MaterialDesignIconButton}"
-                                        Margin="15,0" Width="50" Height="50"
-                                        HorizontalAlignment="Left" HorizontalContentAlignment="Center">
-                                <materialDesign:PackIcon Kind="VolumeMedium" Width="Auto" Height="Auto" />
-                            </Button>
-                            <!--VolumeHigh
+                            IsMoveToPointEnabled="True"/>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Style="{StaticResource MaterialDesignIconButton}" Foreground="#F2F2F2"
+                                    Margin="15,0" Width="50" Height="50"
+                                    Click="PauseOrPlayVideo"    
+                                    HorizontalAlignment="Left" HorizontalContentAlignment="Center">
+                                    <materialDesign:PackIcon x:Name="PlayButton" Kind="Pause" Width="Auto" Height="Auto" />
+                                </Button>
+                                <!--Pause-->
+                                <Button  Style="{StaticResource MaterialDesignIconButton}" Foreground="#F2F2F2"
+                                     Margin="15,0" Width="50" Height="50"
+                                     Click="MuteVol"
+                                     HorizontalAlignment="Left" HorizontalContentAlignment="Center">
+                                    <materialDesign:PackIcon x:Name="Vol_Image" Kind="VolumeMedium" Width="Auto" Height="Auto" />
+                                </Button>
+                                <!--VolumeHigh
                                 VolumeMute-->
-                            <Slider Minimum="0" Maximum="50" Value="35" VerticalAlignment="Center" Width="100" />
-                            <Label Content="0:50 / 4:25" VerticalAlignment="Center"
-                                           Foreground="White" FontSize ="15" />
-                        </StackPanel>
-                        <Button Grid.Column="1" HorizontalAlignment="Right"
+                                <Slider x:Name="slidervol" Foreground="#F2F2F2"
+                                    Minimum="0"
+                                    Maximum="1"
+                                    ValueChanged="Vol_ValueChanged"
+                                    IsMoveToPointEnabled="True"
+                                    Value="0.75" VerticalAlignment="Center" Width="100" />
+                                <Label x:Name="lbTime" Content="0:50 / 4:25" VerticalAlignment="Center"
+                                           Foreground="#F2F2F2" FontSize ="15" />
+                            </StackPanel>
+                            <Button Grid.Column="1" HorizontalAlignment="Right" Foreground="#F2F2F2"
+                                    Click="FullScreenClick"
                                     Style="{StaticResource MaterialDesignIconButton}"
                                     Margin="15,0" Width="25" Height="25">
-                            <materialDesign:PackIcon Kind="ArrowExpand" Width="Auto" Height="Auto" />
-                            <!--ArrowCollapse-->
-                        </Button>
+                                <materialDesign:PackIcon x:Name="FullscreenImage" Kind="ArrowExpand" Width="Auto" Height="Auto" />
+                                <!--ArrowCollapse-->
+                            </Button>
+                        </Grid>
+
                     </Grid>
+                </Grid>
+                <Grid Grid.Row="1" Background="#F2F2F2" x:Name="DetailPage" Height="300">
 
                 </Grid>
 
             </Grid>
-
-
         </ScrollViewer>
     </Grid>
 </UserControl>

@@ -31,13 +31,14 @@
     <Grid>
         <!--Visibility="{Binding IsVisibleMainView}"-->
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto" />
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Border Background="Transparent" MouseDown="BorderDrag_MouseDown">
+        <Border Height="50" Background="Transparent" MouseDown="BorderDrag_MouseDown" Visibility="{Binding HeaderVisibility}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200"/>
+                    <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="400"/>
                 </Grid.ColumnDefinitions>
@@ -45,39 +46,48 @@
                        RenderOptions.BitmapScalingMode="Fant"
                        Source="./Icons/NetFlixLG.png"/>
                 <StackPanel Grid.Column="1" HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Center">
-                    <Button Height="50"
-                        Content="Discovery"
+                    <Button Command="{Binding HomeCommand}"
+                        Content="Home"
                         Style="{StaticResource ButtonText}"
                         Margin="0,0,20,0"/>
-                    <Button Height="50"
-                        Content="TV Series"
+                    <Button 
+                        Content="Movies"
                         Style="{StaticResource ButtonText}"
                         Margin="0,0,20,0"/>
-                    <Button Height="50"
-                        Content="Films"
+                    <Button
+                        Content="Series"
                         Style="{StaticResource ButtonText}"
                         Margin="0,0,20,0"/>
-                    <Button Height="50"
-                        Content="Original Programs"
+                    <Button 
+                        Content="Catagories"
                         Style="{StaticResource ButtonText}"
                         Margin="0,0,20,0"/>
-                    <Button Height="50"
+                    <Button
                         Content="My List"
                         Style="{StaticResource ButtonText}"
                         Margin="0,0,20,0"/>
-                </StackPanel>
 
-                <StackPanel Grid.Column="2" HorizontalAlignment="Right" Orientation="Horizontal">
+                </StackPanel>
+                <TextBox Grid.Column="2"
+                        Background="#282D3C"
+                        HorizontalAlignment="Right"
+                        Padding="8,10"
+                        Width="350"
+                        Foreground="#F2F2F2"
+                        materialDesign:HintAssist.Hint="🔍 Titles, People, Genres"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                <StackPanel Grid.Column="3" HorizontalAlignment="Right" Orientation="Horizontal">
                     <Button
                         Content="_"
                         FontSize="25"
                         Style="{StaticResource ButtonState}"
                         Click="Minimize_ButtonClick"/>
-                    <Button 
+                    <!--<Button 
                         Content="□"
                         FontSize="25"
                         Style="{StaticResource ButtonState}"
-                        Click="WindowState_ButtonClick"/>
+                        Click="WindowState_ButtonClick"/>-->
                     <Button
                         Content="╳"
                         Style="{StaticResource ButtonState}"

@@ -31,13 +31,12 @@ namespace NetflixDemo
         {
             Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
-
-        private void WindowState_ButtonClick(object sender, RoutedEventArgs e)
-        {
-            if (App.Current.MainWindow.WindowState == WindowState.Normal)
-                Application.Current.MainWindow.WindowState = WindowState.Maximized;
-            else
-                Application.Current.MainWindow.WindowState = WindowState.Normal;
-        }
+        //private void WindowState_ButtonClick(object sender, RoutedEventArgs e)
+        //{
+        //    if (App.Current.MainWindow.WindowState == WindowState.Normal)
+        //        Application.Current.MainWindow.WindowState = WindowState.Maximized;
+        //    else
+        //        Application.Current.MainWindow.WindowState = WindowState.Normal;
+        //}
     }
 }
