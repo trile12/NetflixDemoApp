@@ -24,5 +24,17 @@ namespace NetflixDemo.MVVM.View
         {
             InitializeComponent();
         }
+
+        private void listBox1_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (e.Delta < 0)
+            {
+                MainScroll.ScrollToVerticalOffset(MainScroll.VerticalOffset + 40);
+            }
+            else if (e.Delta > 0)
+            {
+                MainScroll.ScrollToVerticalOffset(MainScroll.VerticalOffset - 40);
+            }
+        }
     }
 }
