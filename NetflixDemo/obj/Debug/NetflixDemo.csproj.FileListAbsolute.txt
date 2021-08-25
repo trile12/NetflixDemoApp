@@ -192,3 +192,4 @@ F:\NetflixAppClone\NetflixDemo\bin\Debug\Prism.xml
 F:\NetflixAppClone\NetflixDemo\bin\Debug\Prism.Wpf.pdb
 F:\NetflixAppClone\NetflixDemo\bin\Debug\Prism.Wpf.xml
 F:\NetflixAppClone\NetflixDemo\bin\Debug\System.ValueTuple.xml
+F:\NetflixAppClone\NetflixDemo\obj\Debug\Themes\PartCategory.baml

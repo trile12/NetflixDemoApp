@@ -23,16 +23,21 @@ namespace NetflixDemo.MVVM.View
     public partial class MediaVideoView : UserControl
     {
         DispatcherTimer timer;
+        DispatcherTimer tiempo = new DispatcherTimer();
         double currentVolum = 0;
         MainViewModel main;
         public MediaVideoView()
         {
             InitializeComponent();
+            DataContext = new MediaVideoViewModel();
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += new EventHandler(timer_Tick);
             mediacontrol.Play();
             main = Application.Current.MainWindow.DataContext as MainViewModel;
+
+            tiempo.Tick += tiempo_Tick;
+            tiempo.Interval = new TimeSpan(0, 0, 1);
         }
 
         private void SliderVideo_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -44,6 +49,17 @@ namespace NetflixDemo.MVVM.View
         {
             mediacontrol.Position = TimeSpan.FromSeconds(sliderVideo.Value);
             Play();
+        }
+
+        int contador = 0;
+        private void tiempo_Tick(object sender, EventArgs e)
+        {
+            contador += 1;
+            if (contador == 3)
+            {
+                BorderMediaControls.Visibility = Visibility.Collapsed;
+                tiempo.Stop();
+            }
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -167,6 +183,36 @@ namespace NetflixDemo.MVVM.View
                     Play();
                 else
                     Pause();
+            }
+        }
+
+        private void mediacontrol_MouseMove(object sender, MouseEventArgs e)
+        {
+            tiempo.Start();
+            contador = 0;
+            BorderMediaControls.Visibility = Visibility.Visible;
+        }
+        private void listView_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (e.Delta < 0)
+            {
+                MainScroll.ScrollToVerticalOffset(MainScroll.VerticalOffset + 40);
+            }
+            else if (e.Delta > 0)
+            {
+                MainScroll.ScrollToVerticalOffset(MainScroll.VerticalOffset - 40);
+            }
+        }
+
+        private void MoreDetailClick(object sender, RoutedEventArgs e)
+        {
+            if (StackPanelDetail.Height == 400)
+            {
+                StackPanelDetail.Height = 700;
+            }
+            else
+            {
+                StackPanelDetail.Height = 400;
             }
         }
     }

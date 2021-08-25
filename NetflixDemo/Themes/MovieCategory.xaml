@@ -53,7 +53,7 @@
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
                                             <Setter Property="BorderThickness" Value="4"/>
-                                            <Setter Property="BorderBrush" Value="Red"></Setter>
+                                            <Setter Property="BorderBrush" Value="#F2F2F2"></Setter>
                                             <!--<Setter Property="Height" Value="300"/>
                                             <Setter Property="FocusManager.FocusedElement" Value="{Binding RelativeSource={RelativeSource Self}}"></Setter>-->
                                         </Trigger>

@@ -9,28 +9,29 @@
              TextElement.FontSize="13"
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
-             mc:Ignorable="d" 
-             
+             mc:Ignorable="d"             
              d:DesignHeight="1080" d:DesignWidth="1920">
     <Grid>
-        <ScrollViewer VerticalScrollBarVisibility="Hidden">
+        <ScrollViewer x:Name="MainScroll" VerticalScrollBarVisibility="Hidden">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Grid>
+                <Grid Visibility="Visible">
                     <Grid>
                         <MediaElement x:Name="mediacontrol" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top"
                                   Source="./Videos/MoneyHeist.mp4"
                                   MediaOpened="mediacontrol_MediaOpened"
                                   MouseDown="MediaElement_MouseDown"
+                                  MouseMove="mediacontrol_MouseMove"
                                   Volume="{Binding Value,ElementName=slidervol}"
                                   Stretch="Uniform" Height="800"
                                   LoadedBehavior="Manual"
                                    />
                     </Grid>
-                    <Grid Grid.Row="1" VerticalAlignment="Bottom" Margin="5">
+                    <Grid x:Name="BorderMediaControls" Grid.Row="1" VerticalAlignment="Bottom" Margin="5">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
@@ -82,10 +83,152 @@
 
                     </Grid>
                 </Grid>
-                <Grid Grid.Row="1" Background="#F2F2F2" x:Name="DetailPage" Height="300">
+                <Grid Grid.Row="1" Background="Black" x:Name="DetailPage" Height="300">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Part"
+                           FontWeight="Bold"
+                           FontSize="25"
+                           Margin="5"
+                           Foreground="#F2F2F2"/>
 
+                    <ListView ItemsSource="{Binding Parts}" Margin="5"
+                          Background="Transparent"
+                          PreviewMouseWheel="listView_PreviewMouseWheel"
+                          BorderThickness="0"
+                          Grid.Row="1"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          ItemContainerStyle="{StaticResource PartButton}">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
                 </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="600"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
+                    <Grid Width="300" Height="400" VerticalAlignment="Top" Margin="15,10">
+                        <Grid.Background>
+                            <ImageBrush 
+                                RenderOptions.BitmapScalingMode="Fant" ImageSource="../../Icons/B1.jpg"/>
+                        </Grid.Background>
+                    </Grid>
+                    <StackPanel x:Name="StackPanelDetail" Grid.Column="1" Margin="10,0">
+                        <Label 
+                           Content="Gửi Em Người Bất Tử"
+                           FontWeight="Bold"
+                           FontSize="25"
+                           Margin="0,5"
+                           Foreground="#F2F2F2"/>
+                        <Label 
+                           Content="To Your Eternity"
+                           FontWeight="Medium"
+                           FontSize="25"
+                           Margin="0,5"
+                           Foreground="Gray"/>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:RatingBar
+                              x:Name="BasicRatingBar"
+                                VerticalAlignment="Center"
+                              Value="3"/>
+                            <Button Content="Theo dõi"
+                                Margin="20,0,0,0"
+                                VerticalAlignment="Center"    
+                                Style="{StaticResource ButtonAdd}"/>
+                        </StackPanel>
+
+                        <Label 
+                           Content="Nội dung"
+                           FontWeight="Bold"
+                           FontSize="20"
+                           Margin="0,5"
+                           Foreground="#F2F2F2"/>
+                        <TextBlock 
+                           FontWeight="Bold"
+                           FontSize="18"
+                           Margin="0,5"
+                           TextWrapping="Wrap"
+                           Foreground="Gray">
+                            Gửi Em Người Bất Tử vietsub | Fumetsu No Anata E vietsub | To Your Eternity vietsub: chuyển thể từ truyện tranh cùng tên của tác giả Yoshitoki Ooima. Nó - một vật thể bất tử được gửi đến Trái Đất, Nó không mang cảm xúc, cũng không có danh tính. Tuy nhiên, Nó có thể nhập vào bất cứ sinh vật nào có năng lượng. Lúc đầu, Nó là một khối cầu tròn, sau đó thành đá rồi biến thành cây rêu trên đá. Khi bị thương, một chú sói cô đơn nằm chết lặng lẽ trên tuyết, Nó bắt đầu mô phỏng hình dạng của chú sói đó. Cuối cùng, Nó có được nhận thức và đi lang thang qua ngôi làng Tsundra vắng vẻ cho tới khi Nó gặp được một cậu bé. Cậu bé đang sống một mình trong ngôi làng ma này, khi mà người lớn đã ra đi để tìm lấy thiên đường trong biển tuyết trắng xóa. Tuy nhiên, nỗ lực của họ đã công cốc và bây giờ cậu bé đã ra đi trong tình trạng tuyệt vọng. Nó lấy hình dạng của cậu bé và bắt đầu một cuộc hành trình không hồi kết, để lấy được những kinh nghiệm, khám phá những nơi mới và gặp gỡ những người mới. Sau khi chết nhiều lần, cậu được tìm thấy ở đầm lầy bởi March, một cô bé nhỏ với mong ước trở thành một người mẹ tốt, nhưng không may thay cô lại được chọn là vật hiến tế cho một con gấu tâm linh điên loạn. Cô bé đặt tên cậu là "Fushi" và làm bạn với cậu, dạy cậu cách ăn và bớt hoang dại hơn.
+                            <LineBreak></LineBreak>
+                            <LineBreak></LineBreak>
+Gửi, Em, Người, Bất, Tử, Fumetsu, No, Anata, E, To, Your, Eternity, phim Gửi Em Người Bất Tử, anime Gửi Em Người Bất Tử, Gửi Em Người Bất Tử HD, xem anime Gửi Em Người Bất Tử, xem phim Gửi Em Người Bất Tử tập 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20, Gửi Em Người Bất Tử vietsub, To Your Eternity vietsub, To Your Eternity phụ đề, Fumetsu No Anata E vietsub, Fumetsu No Anata E online, Fumetsu No Anata E phụ đề, Gửi Em Người Bất Tử online, xem To Your Eternity HD, Gửi Em Người Bất Tử FPT Play, To Your Eternity FPT Play, Fumetsu No Anata E FPT Play, To Your Eternity online, To Your Eternity 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20, Gửi Em Người Bất Tử FPT Play, Gửi Em Người Bất Tử phụ đề, xem phim Gửi Em Người Bất Tử online tập 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20, Gửi Em Người Bất Tử HD FPT Play, To Your Eternity HD FPT Play, Fumetsu No Anata E HD FPT Play
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2" Margin="10,0">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Width="140"
+                           Content="Số tập"
+                           FontWeight="Bold"
+                           FontSize="25"
+                           Foreground="#F2F2F2"/>
+                            <Label 
+                                Margin="10,0"
+                           Content="24/24"
+                           FontWeight="Medium"
+                           FontSize="25"
+                           Foreground="Gray"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Width="140"
+                           Content="Thời lượng"
+                           FontWeight="Bold"
+                           FontSize="25"
+                           Foreground="#F2F2F2"/>
+                            <Label 
+                                Margin="10,0"
+                           Content="24 phút"
+                           FontWeight="Medium"
+                           FontSize="25"
+                           Foreground="Gray"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Width="140"
+                           Content="Quốc gia"
+                           FontWeight="Bold"
+                           FontSize="25"
+                           Foreground="#F2F2F2"/>
+                            <Label 
+                                Margin="10,0"
+                           Content="Japan"
+                           FontWeight="Medium"
+                           FontSize="25"
+                           Foreground="Gray"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Width="140"
+                           Content="Phát hành"
+                           FontWeight="Bold"
+                           FontSize="25"
+                           Foreground="#F2F2F2"/>
+                            <Label 
+                                Margin="10,0"
+                           Content="2016"
+                           FontWeight="Medium"
+                           FontSize="25"
+                           Foreground="Gray"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Button x:Name="moreDetail" Click="MoreDetailClick" VerticalAlignment="Top"
+                        Content="Xem thêm"
+                                HorizontalAlignment="Left"
+                        Style="{StaticResource ButtonTextImage}"
+                        Margin="0,10,0,20"/>
+                    </Grid>
+                </Grid>
             </Grid>
         </ScrollViewer>
     </Grid>
