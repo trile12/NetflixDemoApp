@@ -1,6 +1,7 @@
 ﻿using NetflixDemo.Core;
 using NetflixDemo.MVVM.Model;
 using NetflixDemo.MVVM.View;
+using Prism.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -54,9 +55,22 @@ namespace NetflixDemo.MVVM.ViewModel
             }
         }
 
+        private int _GridImageHeight;
+
+        public int GridImageHeight
+        {
+            get { return _GridImageHeight; }
+            set
+            {
+                _GridImageHeight = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         public RelayCommand SelectCommand { get; set; }
         public RelayCommand ClickPlayButton { get; set; }
+        public DelegateCommand CollapseCommand { get; set; }
 
         public HomeViewModel()
         {
@@ -64,6 +78,16 @@ namespace NetflixDemo.MVVM.ViewModel
             CategoryMovie = new ObservableCollection<CategoryModel>();
             CreateDataTest();
             ClickPlayButton = new RelayCommand(Play);
+            CollapseCommand = new DelegateCommand(CollapseEvent);
+            GridImageHeight = 650;
+        }
+
+        private void CollapseEvent()
+        {
+            if (GridImageHeight == 15)
+                GridImageHeight = 650;
+            else
+                GridImageHeight = 15;
         }
 
         public void CreateDataTest()

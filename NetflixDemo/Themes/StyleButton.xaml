@@ -143,6 +143,9 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border CornerRadius="4" Background="{TemplateBinding Background}">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Path x:Name="PathIcon" Width="15" Height="15" Stretch="Fill" Fill="#F2F2F2" Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                        </StackPanel>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -152,6 +155,40 @@
                         <Trigger Property="IsPressed" Value="True">
                             <Setter Property="Background" Value="#E59400" />
                             <Setter Property="Foreground" Value="#F2F2F2" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type Button}" x:Key="ButtonExpand">
+        <Setter Property="Background" Value="#282D3C" />
+        <Setter Property="Foreground" Value="#F2F2F2" />
+        <!--<Setter Property="FontSize" Value="15" />
+        <Setter Property="Width" Value="120" />-->
+        <!--<Setter Property="Height" Value="45" />-->
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Opacity" Value="0.5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Path x:Name="PathIcon" Width="15" Height="15" Stretch="Fill" Fill="#F2F2F2" Data="M4,12H20V14H4V12M4,9H20V11H4V9M16,4L12,8L8,4H11V1H13V4H16M8,19L12,15L16,19H13V22H11V19H8Z"/>
+                        </StackPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="Gray"/>
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter TargetName="PathIcon" Property="Fill" Value="#F2F2F2" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="#E59400" />
+                            <Setter Property="Foreground" Value="#F2F2F2" />
+                            <Setter TargetName="PathIcon" Property="Fill" Value="Gray" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
