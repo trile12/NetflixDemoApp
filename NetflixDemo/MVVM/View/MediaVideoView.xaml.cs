@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -214,6 +215,20 @@ namespace NetflixDemo.MVVM.View
             {
                 StackPanelDetail.Height = 400;
             }
+        }
+
+        private void Slider_MouseMove(object sender, MouseEventArgs e)
+        {
+            //tt.Placement = System.Windows.Controls.Primitives.PlacementMode.Relative;
+            //tt.HorizontalOffset = e.GetPosition((IInputElement)sender).X + 10;
+            //tt.VerticalOffset = e.GetPosition((IInputElement)sender).Y + 10;
+
+            //tt.Content= mediacontrol.Position.Minutes + ":" + mediacontrol.Position.Seconds;
+
+            //var track = sliderVideo.Template.FindName("PART_Track", sliderVideo) as Track;
+
+            //var a = sender as Slider;
+            //var b = a.Value;
         }
     }
 }

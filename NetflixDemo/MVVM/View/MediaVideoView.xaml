@@ -3,13 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:NetflixDemo"
+             xmlns:local="clr-namespace:NetflixDemo.Core"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.FontWeight="Regular"
              TextElement.FontSize="13"
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
-             mc:Ignorable="d"             
+             mc:Ignorable="d"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              d:DesignHeight="1080" d:DesignWidth="1920">
     <Grid>
         <ScrollViewer x:Name="MainScroll" VerticalScrollBarVisibility="Hidden">
@@ -18,6 +19,8 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
                 <Grid Visibility="Visible">
                     <Grid>
@@ -33,15 +36,20 @@
                     </Grid>
                     <Grid x:Name="BorderMediaControls" Grid.Row="1" VerticalAlignment="Bottom" Margin="5">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="50"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Slider x:Name="sliderVideo" Margin="5,0" Foreground="#F2F2F2"
                             Thumb.DragCompleted="DragComplete"
                             MouseLeftButtonUp="SliderVideo_MouseLeftButtonUp"
-                            VerticalAlignment="Top"
+                            MouseMove="Slider_MouseMove"
+                            VerticalAlignment="Bottom"
                             Maximum="1" TickFrequency="0.1"
-                            IsMoveToPointEnabled="True"/>
+                            IsMoveToPointEnabled="True">
+                            <!--<Slider.ToolTip>
+                                <ToolTip x:Name="tt" Content="ABCDEFGHIJKL"/>
+                            </Slider.ToolTip>-->
+                        </Slider>
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -139,7 +147,8 @@
                            Margin="0,5"
                            Foreground="Gray"/>
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:RatingBar
+                            <materialDesign:RatingBar Background="#E59400"
+                                                      Foreground="#E59400"
                               x:Name="BasicRatingBar"
                                 VerticalAlignment="Center"
                               Value="3"/>
@@ -228,6 +237,28 @@ Gửi, Em, Người, Bất, Tử, Fumetsu, No, Anata, E, To, Your, Eternity, phi
                         Style="{StaticResource ButtonTextImage}"
                         Margin="0,10,0,20"/>
                     </Grid>
+                </Grid>
+
+                <Grid Grid.Row="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Recommend"
+                       FontWeight="Bold"
+                       Foreground="Gray"
+                           FontSize="20"
+                       Margin="8,0,0,0"
+                       VerticalAlignment="Center"/>
+                    <ListBox PreviewMouseWheel="listView_PreviewMouseWheel" Grid.Row="1"
+                        ItemsSource="{Binding Movies}"
+                        SelectedItem="{Binding SelectedMovie}"
+                        SelectionMode="Extended"
+                        ItemContainerStyle="{StaticResource MovieCategory}"
+                        Style="{ StaticResource ListBoxWithAutoScroll_Horizontal }"
+                        >
+                    </ListBox>
+
                 </Grid>
             </Grid>
         </ScrollViewer>
