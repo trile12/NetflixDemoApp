@@ -14,13 +14,14 @@
         mc:Ignorable="d"
         Background="Black"
         WindowStartupLocation="CenterScreen"
-        Height="1080" Width="1920"
+        Height="1050" Width="1920"
         WindowStyle="None"
-        WindowState="Maximized"
+  
         AllowsTransparency="True" 
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         ResizeMode="CanResizeWithGrip">
-    <Window.DataContext>
+  <!--WindowState="Maximized"-->
+  <Window.DataContext>
         <viewmodel:MainViewModel/>
     </Window.DataContext>
     <i:Interaction.Triggers>

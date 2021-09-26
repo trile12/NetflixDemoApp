@@ -192,3 +192,4 @@ F:\NetflixAppClone\NetflixDemo\obj\Debug\NetflixDemo.csproj.CoreCompileInputs.ca
 F:\NetflixAppClone\NetflixDemo\obj\Debug\NetflixDemo.csproj.CopyComplete
 F:\NetflixAppClone\NetflixDemo\obj\Debug\NetflixDemo.exe
 F:\NetflixAppClone\NetflixDemo\obj\Debug\NetflixDemo.pdb
+F:\NetflixAppClone\NetflixDemo\obj\Debug\NetflixDemo.csproj.AssemblyReference.cache
